@@ -16,7 +16,7 @@ Client / Source will be uploading the Daily order status in a source location, t
 
 ---
 
-🚀 Getting Started
+## 🚀 Getting Started
 Steps to get started with the project
 
 Step 1: 📁 Create Azure Account and required Containers in Azure Data Lake
@@ -43,14 +43,10 @@ Step 4: 🛠 Create Notebooks
   which gets the data from the `stage_orders_table` to `orders_table`, it will incrementally load the data,
   based on the **merge_condition = "stage.tracking_num = target.tracking_num"** it will delete the appropriate record and add the new one and update the old record.
 
----
-
 🛠 Step 5: Create Job:
 - creating a job pipeline in the workflows, each notebook will be created as a task and therefore creating a job pipeline, then job will be scheduled as file arrival (act as a event driven pipeline)
 
 **Note:** Manually run it or schedule it to start the job.
-
----
 
 🔍 Step 6: Verify and Track Data:
 - use SQL queries to track the orders using tracking_num.
@@ -58,8 +54,8 @@ Step 4: 🛠 Create Notebooks
   
 ---
 
-## 📦 Usage
--
+### 📦 Usage
+
 Once the Job triggered
 
 1. **Source**: raw order records are read from the file_arrival location
