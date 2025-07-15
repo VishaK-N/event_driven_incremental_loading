@@ -75,7 +75,8 @@ Once the Job triggered
 
 📤 Client → 📁 Source → 🗂️ Staging (overwrite) → 🔁 Incremental Load → 📊 Final Table → 📤 sql queries
 
-<img src="ScreenShots/job_runs_ss(2).png" alt='job2' width='500'>
+<img src="ScreenShots/job_graph_ss.png" alt='jobgraph' width='500'>
+<img src="ScreenShots/job_runs_2_ss.png" alt='job2' width='500'>
 
 
 ---
