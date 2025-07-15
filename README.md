@@ -50,7 +50,7 @@ eventsource - container to store the data
 
 ### Step 6: 🔍 Verify and Track Data:
 - use SQL queries to track the orders using tracking_num.
-  **Select * from event_catalo.orders_schema.orders_table**
+- **Select * from event_catalo.orders_schema.orders_table**
   
 ---
 
