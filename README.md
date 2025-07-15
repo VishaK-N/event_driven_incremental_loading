@@ -25,6 +25,7 @@ Create the storage account with namespace heirarchy checkbox ticked to create th
 eventsource - container to store the data
 - archive (where the raw daily orders file will be stored for future use)
 - file_arrival_location (where the daiy source file will be uploaded)
+<img src="ScreenShots/eventsource_container_ss.png" alt="container" width="500"/>
 
 ### Step 2: 🔗 Create Azure Databricks Account and it's Integration with the Azure Data Lake
 - Connect the Azure Databricks with the Azure either using Service Principal or Azure Managed Identity as crenditial.
@@ -33,6 +34,8 @@ eventsource - container to store the data
 ### Step 3: 📁 Create Managed Catalog, Managed Schema and External Volume
 - In the Databricks,create the catalog and the schema with in the catalog
 - after that create the external volume using the managed identity and allow the databricks to access specific container by adding the member in the IAM.
+
+<img src="ScreenShots/catalog_schema_table_ss.png" alt="catalog" width="500"/>
 
 **Note:** Create the compute Engine to run the Notebooks
  
@@ -45,14 +48,19 @@ eventsource - container to store the data
 
 **Note:** Tables will be created automatically while running the job.
 
+<img src="ScreenShots/notebook1_ss.png" alt='note1' width='500'>
+<img src="ScreenShots/notebook2_ss.png" alt='note2' width='500'>
+
  ### Step 5: 🛠 Create Job
 - creating a job pipeline in the workflows, each notebook will be created as a task and therefore creating a job pipeline, then job will be scheduled as file arrival (act as a event driven pipeline)
 
-**Note:** Manually run it or schedule it to start the job.
+- **Note:** Manually run it or schedule it to start the job.
+<img src="ScreenShots/job_runs_ss.png" alt='job1' width='500'>
 
 ### Step 6: 🔍 Verify and Track Data:
 - use SQL queries to track the orders using tracking_num.
 - **Select * from event_catalo.orders_schema.orders_table**
+<img src="ScreenShots/sql_query_ss.png" alt='sql_query' width='500'>
   
 ---
 
@@ -66,6 +74,9 @@ Once the Job triggered
 4. **Validation**: Queries are used to check updates and track records.
 
 📤 Client → 📁 Source → 🗂️ Staging (overwrite) → 🔁 Incremental Load → 📊 Final Table → 📤 sql queries
+
+<img src="ScreenShots/job_runs_ss(2).png" alt='job2' width='500'>
+
 
 ---
 
