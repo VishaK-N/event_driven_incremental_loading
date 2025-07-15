@@ -39,9 +39,11 @@ eventsource - container to store the data
 ### Step 4: 🛠 Create Notebooks 
 - create the NoteBook Source_to_Stage   
   which extract the data from the file_arrival folder and overwrite it to the `stage_orders_table` and files in the file_arrival location will be moved to the archive folder.
-- create the NoteBook Stage_to_Final
+- create the Notebook Stage_to_Final
   which gets the data from the `stage_orders_table` to `orders_table`, it will incrementally load the data,
   based on the **merge_condition = "stage.tracking_num = target.tracking_num"** it will delete the appropriate record and add the new one and update the old record.
+
+**Note:** Tables will be created automatically while running the job.
 
  ### Step 5: 🛠 Create Job
 - creating a job pipeline in the workflows, each notebook will be created as a task and therefore creating a job pipeline, then job will be scheduled as file arrival (act as a event driven pipeline)
