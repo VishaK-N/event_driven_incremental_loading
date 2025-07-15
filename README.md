@@ -30,7 +30,7 @@ eventsource - container to store the data
 ### Step 2: 🔗 Create Azure Databricks Account and it's Integration with the Azure Data Lake
 - Connect the Azure Databricks with the Azure either using Service Principal or Azure Managed Identity as crenditial.
 - Allow the access for the specific container so that the Databricks have the permission to access it.
-<img src="Screenshots/workspace_ss.png" alt="Databricks" width="500"/>
+<img src="ScreenShots/workspace_ss.png" alt="Databricks" width="500"/>
 
 ### Step 3: 📁 Create Managed Catalog, Managed Schema and External Volume
 - In the Databricks,create the catalog and the schema with in the catalog
