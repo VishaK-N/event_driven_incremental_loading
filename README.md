@@ -2,16 +2,9 @@
 
 This project developed uaing the **Databricks** used to track the orders, to know about the current status of the orders in daily basis.
 
-## 📌 Project Structure :
-
 Client / Source will be uploading the Daily order status in a source location, then it will be moved to staging layer (overwritten everytime) and then loaded incrementally to the final table.
 
 📤 Client → 📁 Source → 🗂️ Staging (overwrite) → 🔁 Incremental Load → 📊 Final Table → 📤 sql queries
-
-
-1. **Stage**: New order records are inserted into `stage_orders_table`.
-2. **Process**: Records are merged or inserted into `orders_table`.
-3. **Validation**: Queries are used to check updates and track records.
 
 ---
 
@@ -23,22 +16,48 @@ Client / Source will be uploading the Daily order status in a source location, t
 
 ---
 
-## 📂 Git Branch
+🚀 Getting Started
+Steps to get started with the project
 
-All development work is done in the `dev` branch.
+Step 1: 📁 Create Azure Account and required Containers in Azure Data Lake
+Create the storage account with namespace heirarchy checkbox ticked to create the Azure Data lake or Azure blob stoarge can also be used, In the ADLS create the containers such as
+
+eventsource - container to store the data
+- archive (where the raw daily orders file will be stored for future use)
+- file_arrival_location (where the daiy source file will be uploaded)
+
+Step 2: 🔗 Create Azure Databricks Account and it's Integration with the Azure Data Lake
+- Connect the Azure Databricks with the Azure either using Service Principal or Azure Managed Identity as crenditial.
+- Allow the access for the specific container so that the Databricks have the permission to access it.
+
+Step 3: 📁 Create Managed Catalog, Managed Schema and External Volume
+- In the Databricks,create the catalog and the schema with in the catalog
+- after that create the external volume using the managed identity and allow the databricks to access specific container by adding the member in the IAM.
+
+**Note:** Create the compute Engine to run the Notebooks
+ 
+Step 4: 🛠 Create Notebooks 
+- create the NoteBook Source_to_Stage   
+  which extract the data from the file_arrival folder and overwrite it to the `stage_orders_table` and files in the file_arrival location will be moved to the archive folder.
+- create the NoteBook Stage_to_Final
+  which gets the data from the `stage_orders_table` to `orders_table`, it will incrementally load the data,
+  based on the **merge_condition = "stage.tracking_num = target.tracking_num"** it will delete the appropriate record and add the new one and update the old record.
 
 ---
 
-## 🧑‍💻 Author
+🛠 Step 5: Create Job:
+- creating a job pipeline in the workflows, each notebook will be created as a task and therefore creating a job pipeline, then job will be scheduled as file arrival (act as a event driven pipeline)
 
-**Vishak N**  
-[GitHub Profile](https://github.com/VishaK-N)
+**Note:** Manually run it or schedule it to start the job.
 
 ---
 
-## 📸 Screenshots
+## 📌 Project Structure :
 
-![final_output](ScreenShots/final_table_preview_ss.png)
+1. **Stage**: New order records are inserted into `stage_orders_table`.
+2. **Process**: Records are merged or inserted into `orders_table`.
+3. **Validation**: Queries are used to check updates and track records.
+
 
 ---
 
