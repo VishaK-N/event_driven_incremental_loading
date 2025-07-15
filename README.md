@@ -52,12 +52,20 @@ Step 4: 🛠 Create Notebooks
 
 ---
 
-## 📌 Project Structure :
+🔍 Step 6: Verify and Track Data:
+- use SQL queries to track the orders using tracking_num.
+  **Select * from event_catalo.orders_schema.orders_table**
+  
+---
 
-1. **Stage**: New order records are inserted into `stage_orders_table`.
-2. **Process**: Records are merged or inserted into `orders_table`.
-3. **Validation**: Queries are used to check updates and track records.
+## 📦 Usage
+-
+Once the Job triggered
 
+1. **Source**: raw order records are read from the file_arrival location
+2. **Stage**:  raw order records are inserted into `stage_orders_table`.
+3. **Process**: Records are merged or inserted into `orders_table`.
+4. **Validation**: Queries are used to check updates and track records.
 
 ---
 
